@@ -4,8 +4,8 @@ from sqlalchemy import select
 from sqlalchemy.orm import selectinload
 
 from app.core.base_repository import BaseRepository
-from app.questions.model import Question
-from app.questions.schemas import QuestionCreateSchema
+from app.domains.questions.model import Question
+from app.domains.questions.schemas import QuestionCreateSchema
 from app.utils.logger import get_logger
 
 logger = get_logger(__name__)

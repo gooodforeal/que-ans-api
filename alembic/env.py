@@ -12,8 +12,8 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
 # Импортируем модели и настройки
 from app.core.database import Base
 from app.utils.config import settings
-from app.questions.model import Question  # noqa
-from app.answers.model import Answer  # noqa
+from app.domains.questions.model import Question  # noqa
+from app.domains.answers.model import Answer  # noqa
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.

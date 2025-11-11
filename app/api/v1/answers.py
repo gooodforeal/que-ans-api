@@ -2,8 +2,8 @@ from fastapi import APIRouter, Depends, status
 
 from app.core.dependencies import get_answer_service
 from app.core.schemas import StandardResponse
-from app.answers.schemas import AnswerCreateSchema, AnswerResponseSchema
-from app.answers.service import AnswerService
+from app.domains.answers.schemas import AnswerCreateSchema, AnswerResponseSchema
+from app.domains.answers.service import AnswerService
 
 # Роутер для создания ответов (с префиксом /questions)
 answer_create_router = APIRouter(prefix="/questions", tags=["answers"])
@@ -62,4 +62,3 @@ async def delete_answer(
         message="Answer deleted successfully",
         data={"id": answer_id}
     )
-

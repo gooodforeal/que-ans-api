@@ -2,8 +2,8 @@ from typing import List
 from fastapi import HTTPException, status
 from sqlalchemy.exc import IntegrityError, OperationalError
 
-from app.questions.repository import QuestionRepository
-from app.questions.schemas import (
+from app.domains.questions.repository import QuestionRepository
+from app.domains.questions.schemas import (
     QuestionCreateSchema,
     QuestionResponseSchema,
     QuestionWithAnswersSchema

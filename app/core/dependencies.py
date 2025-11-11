@@ -2,10 +2,10 @@ from fastapi import Depends
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.database import get_db
-from app.questions.repository import QuestionRepository
-from app.questions.service import QuestionService
-from app.answers.repository import AnswerRepository
-from app.answers.service import AnswerService
+from app.domains.questions.repository import QuestionRepository
+from app.domains.questions.service import QuestionService
+from app.domains.answers.repository import AnswerRepository
+from app.domains.answers.service import AnswerService
 
 
 def get_question_repository(db: AsyncSession = Depends(get_db)) -> QuestionRepository:

@@ -3,12 +3,12 @@ from fastapi import APIRouter, Depends, status
 
 from app.core.dependencies import get_question_service
 from app.core.schemas import StandardResponse
-from app.questions.schemas import (
+from app.domains.questions.schemas import (
     QuestionCreateSchema,
     QuestionResponseSchema,
     QuestionWithAnswersSchema
 )
-from app.questions.service import QuestionService
+from app.domains.questions.service import QuestionService
 
 router = APIRouter(prefix="/questions", tags=["questions"])
 
@@ -78,4 +78,3 @@ async def delete_question(
         message="Question deleted successfully",
         data={"id": question_id}
     )
-

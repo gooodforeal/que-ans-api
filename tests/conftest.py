@@ -10,8 +10,8 @@ from httpx import AsyncClient
 from app.core.database import Base, get_db
 from app.main import app
 # Импортируем модели для создания таблиц в тестах
-from app.questions.model import Question  # noqa
-from app.answers.model import Answer  # noqa
+from app.domains.questions.model import Question  # noqa
+from app.domains.answers.model import Answer  # noqa
 
 # Создаем тестовую БД в памяти (SQLite для тестов)
 SQLALCHEMY_DATABASE_URL = "sqlite+aiosqlite:///./test.db"

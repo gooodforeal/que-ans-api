@@ -3,7 +3,7 @@ from datetime import datetime
 from typing import List, TYPE_CHECKING
 
 if TYPE_CHECKING:
-    from app.answers.schemas import AnswerResponseSchema
+    from app.domains.answers.schemas import AnswerResponseSchema
 
 
 class QuestionBaseSchema(BaseModel):
@@ -28,5 +28,5 @@ class QuestionWithAnswersSchema(QuestionResponseSchema):
 
 
 # Импортируем для правильной работы forward references
-from app.answers.schemas import AnswerResponseSchema  # noqa
+from app.domains.answers.schemas import AnswerResponseSchema  # noqa
 QuestionWithAnswersSchema.model_rebuild()

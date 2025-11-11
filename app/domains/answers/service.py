@@ -1,8 +1,8 @@
 from fastapi import HTTPException, status
 from sqlalchemy.exc import IntegrityError, OperationalError
 
-from app.answers.repository import AnswerRepository
-from app.answers.schemas import AnswerCreateSchema, AnswerResponseSchema
+from app.domains.answers.repository import AnswerRepository
+from app.domains.answers.schemas import AnswerCreateSchema, AnswerResponseSchema
 
 
 class AnswerService:

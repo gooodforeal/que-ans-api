@@ -2,9 +2,9 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
 
 from app.core.base_repository import BaseRepository
-from app.answers.model import Answer
-from app.questions.model import Question
-from app.answers.schemas import AnswerCreateSchema
+from app.domains.answers.model import Answer
+from app.domains.questions.model import Question
+from app.domains.answers.schemas import AnswerCreateSchema
 from app.utils.logger import get_logger
 
 logger = get_logger(__name__)

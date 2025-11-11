@@ -272,7 +272,7 @@ async def test_delete_answer_invalid_id(client):
 @pytest.mark.asyncio
 async def test_cascade_delete_answers_on_question_delete(client, db_session):
     """Тест каскадного удаления ответов при удалении вопроса"""
-    from app.answers.model import Answer
+    from app.domains.answers.model import Answer
     from sqlalchemy import select
 
     # Создаем вопрос
