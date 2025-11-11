@@ -56,8 +56,10 @@ async def test_create_answer_nonexistent_question(client):
 
     assert response.status_code == status.HTTP_404_NOT_FOUND
     response_data = response.json()
-    assert "detail" in response_data
-    assert "does not exist" in response_data["detail"] or "not found" in response_data["detail"]
+    assert "message" in response_data
+    assert "data" in response_data
+    assert response_data["data"] is None
+    assert "does not exist" in response_data["message"] or "not found" in response_data["message"]
 
 
 @pytest.mark.asyncio
@@ -78,6 +80,10 @@ async def test_create_answer_empty_text(client):
         }
     )
     assert response.status_code == status.HTTP_422_UNPROCESSABLE_ENTITY
+    response_data = response.json()
+    assert "message" in response_data
+    assert "data" in response_data
+    assert "Validation error" in response_data["message"]
 
 
 @pytest.mark.asyncio
@@ -96,6 +102,10 @@ async def test_create_answer_missing_fields(client):
         json={"user_id": 123}
     )
     assert response.status_code == status.HTTP_422_UNPROCESSABLE_ENTITY
+    response_data = response.json()
+    assert "message" in response_data
+    assert "data" in response_data
+    assert "Validation error" in response_data["message"]
 
     # Без user_id
     response = await client.post(
@@ -103,6 +113,10 @@ async def test_create_answer_missing_fields(client):
         json={"text": "Ответ"}
     )
     assert response.status_code == status.HTTP_422_UNPROCESSABLE_ENTITY
+    response_data = response.json()
+    assert "message" in response_data
+    assert "data" in response_data
+    assert "Validation error" in response_data["message"]
 
 
 @pytest.mark.asyncio
@@ -124,6 +138,10 @@ async def test_create_answer_invalid_user_id(client):
         }
     )
     assert response.status_code == status.HTTP_422_UNPROCESSABLE_ENTITY
+    response_data = response.json()
+    assert "message" in response_data
+    assert "data" in response_data
+    assert "Validation error" in response_data["message"]
 
     # Отрицательный user_id
     response = await client.post(
@@ -134,6 +152,10 @@ async def test_create_answer_invalid_user_id(client):
         }
     )
     assert response.status_code == status.HTTP_422_UNPROCESSABLE_ENTITY
+    response_data = response.json()
+    assert "message" in response_data
+    assert "data" in response_data
+    assert "Validation error" in response_data["message"]
 
 
 @pytest.mark.asyncio
@@ -155,6 +177,10 @@ async def test_create_answer_text_too_long(client):
         }
     )
     assert response.status_code == status.HTTP_422_UNPROCESSABLE_ENTITY
+    response_data = response.json()
+    assert "message" in response_data
+    assert "data" in response_data
+    assert "Validation error" in response_data["message"]
 
 
 @pytest.mark.asyncio
@@ -205,8 +231,10 @@ async def test_get_nonexistent_answer(client):
 
     assert response.status_code == status.HTTP_404_NOT_FOUND
     response_data = response.json()
-    assert "detail" in response_data
-    assert "not found" in response_data["detail"]
+    assert "message" in response_data
+    assert "data" in response_data
+    assert response_data["data"] is None
+    assert "not found" in response_data["message"]
 
 
 @pytest.mark.asyncio
@@ -214,6 +242,10 @@ async def test_get_answer_invalid_id(client):
     """Тест получения ответа с невалидным ID"""
     response = await client.get("/api/v1/answers/abc")
     assert response.status_code == status.HTTP_422_UNPROCESSABLE_ENTITY
+    response_data = response.json()
+    assert "message" in response_data
+    assert "data" in response_data
+    assert "Validation error" in response_data["message"]
 
 
 @pytest.mark.asyncio
@@ -258,8 +290,10 @@ async def test_delete_nonexistent_answer(client):
 
     assert response.status_code == status.HTTP_404_NOT_FOUND
     response_data = response.json()
-    assert "detail" in response_data
-    assert "not found" in response_data["detail"]
+    assert "message" in response_data
+    assert "data" in response_data
+    assert response_data["data"] is None
+    assert "not found" in response_data["message"]
 
 
 @pytest.mark.asyncio
@@ -267,6 +301,10 @@ async def test_delete_answer_invalid_id(client):
     """Тест удаления ответа с невалидным ID"""
     response = await client.delete("/api/v1/answers/abc")
     assert response.status_code == status.HTTP_422_UNPROCESSABLE_ENTITY
+    response_data = response.json()
+    assert "message" in response_data
+    assert "data" in response_data
+    assert "Validation error" in response_data["message"]
 
 
 @pytest.mark.asyncio

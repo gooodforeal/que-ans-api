@@ -1,11 +1,13 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.exceptions import RequestValidationError
 from contextlib import asynccontextmanager
 
 from app.utils.config import settings
 from app.utils.logger import setup_logging
 from app.core.database import engine
 from app.core.schemas import StandardResponse
+from app.core.exceptions import http_exception_handler, validation_exception_handler
 from app.api.v1 import api_router
 
 # Настройка логирования
@@ -37,6 +39,10 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# Подключение обработчиков исключений
+app.add_exception_handler(HTTPException, http_exception_handler)
+app.add_exception_handler(RequestValidationError, validation_exception_handler)
 
 # Подключение роутеров API v1
 app.include_router(api_router)
